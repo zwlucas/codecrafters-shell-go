@@ -21,7 +21,7 @@ func main() {
 
 		switch in {
 			case commnds[0] == "exit":
-				os.Exit(commands[1])
+				os.Exit(commands[1].ToInt())
 		}
 
 		fmt.Printf("%s: command not found\n", strings.TrimRight(in, "\n"))
