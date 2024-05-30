@@ -17,7 +17,7 @@ func main() {
 			fmt.Println(err.Error())
 		}
 
-		if in == "exit 0" {
+		if in == "exit 0\n" {
 			os.Exit(0)
 		} else {
 			fmt.Printf("%s: command not found\n", strings.TrimRight(in, "\n"))
