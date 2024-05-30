@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"strconv"
 )
 
 func main() {
@@ -20,8 +21,8 @@ func main() {
 		commands := strings.Split(in, " ")
 
 		switch in {
-			case commnds[0] == "exit":
-				os.Exit(commands[1].ToInt())
+			case commands[0] == "exit":
+				os.Exit(strconv.Atoi(commands[1]))
 		}
 
 		fmt.Printf("%s: command not found\n", strings.TrimRight(in, "\n"))
