@@ -17,6 +17,11 @@ func main() {
 			fmt.Println(err.Error())
 		}
 
+		switch in {
+			case "exit\n":
+				os.Exit(0)
+		}
+
 		fmt.Printf("%s: command not found\n", strings.TrimRight(in, "\n"))
 	}
 }
