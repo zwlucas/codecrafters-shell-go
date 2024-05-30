@@ -16,5 +16,5 @@ func main() {
 		fmt.Println(err.Error())
 	}
 
-	fml.Printf("%s: command not found\n", strings.TrimRight(in, "\n"))
+	fmt.Printf("%s: command not found\n", strings.TrimRight(in, "\n"))
 }
