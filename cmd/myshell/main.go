@@ -18,14 +18,10 @@ func main() {
 			fmt.Println(err.Error())
 		}
 
-		commands := strings.Split(in, " ")
-
-		switch in {
-			case commands[0] == "exit":
-				n, err := strconv.Atoi(commands[1])
-				os.Exit(n)
+		if in == "exit 0" {
+			os.Exit(0)
+		} else {
+			fmt.Printf("%s: command not found\n", strings.TrimRight(in, "\n"))
 		}
-
-		fmt.Printf("%s: command not found\n", strings.TrimRight(in, "\n"))
 	}
 }
