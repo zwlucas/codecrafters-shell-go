@@ -22,7 +22,8 @@ func main() {
 
 		switch in {
 			case commands[0] == "exit":
-				os.Exit(strconv.Atoi(commands[1]))
+				n, err := strconv.Atoi(commands[1])
+				os.Exit(n)
 		}
 
 		fmt.Printf("%s: command not found\n", strings.TrimRight(in, "\n"))
