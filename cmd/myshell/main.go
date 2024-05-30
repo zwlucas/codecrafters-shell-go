@@ -17,7 +17,7 @@ func main() {
 			fmt.Println(err.Error())
 		}
 
-		commads := strings.Split(in, " ")
+		commands := strings.Split(in, " ")
 
 		switch in {
 			case commnds[0] == "exit":
