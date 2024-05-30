@@ -17,9 +17,11 @@ func main() {
 			fmt.Println(err.Error())
 		}
 
+		commads := strings.Split(in, " ")
+
 		switch in {
-			case "exit\n":
-				os.Exit(0)
+			case commnds[0] == "exit":
+				os.Exit(commands[1])
 		}
 
 		fmt.Printf("%s: command not found\n", strings.TrimRight(in, "\n"))
