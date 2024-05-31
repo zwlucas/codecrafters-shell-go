@@ -29,13 +29,10 @@ func main() {
 				fmt.Println(err.Error())
 			}
 			os.Exit(code)
-			return
 		case "echo":
-			fmt.Println(os.Stdout, "%s\n", strings.Join(commands[1:], " "))
-			return
+			fmt.Printf("%s\n", strings.Join(commands[1:], " "))
 		default:
 			fmt.Printf("%s: command not found\n", commands[0])
-			return
 		}
 	}
 }
