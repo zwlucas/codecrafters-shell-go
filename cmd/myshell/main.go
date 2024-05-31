@@ -50,11 +50,21 @@ func main() {
 }
 
 func Cd(dir string) {
+	if len(dir) < 1 {
+		fmt.Println("path expected")
+		return
+	}
+
 	p := path.Clean(dir)
 
-	if !path.IsAbs(p) {
+	if !path.IsAbs(p) && dir != "~" {
 		dir, _ := os.Getwd()
 		p = path.Join(dir, p)
+	}
+
+	if dir == "~" {
+		home, _ := os.UserHomeDir()
+		p = home + dir
 	}
 
 	err := os.Chdir(p)
