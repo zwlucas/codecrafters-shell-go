@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path"
 	"strconv"
 	"strings"
 )
@@ -40,6 +41,7 @@ func main() {
 			executable.Stdout = os.Stdout
 
 			err := executable.Run()
+
 			if err != nil {
 				fmt.Printf("%s: command not found\n", command[0])
 			}
@@ -48,8 +50,17 @@ func main() {
 }
 
 func Cd(dir string) {
-	if err := os.Chdir(dir); err != nil {
-		fmt.Fprintf(os.Stdout, "%s: No such file or directory\n", dir)
+	p := path.Clean(dir)
+
+	if !path.IsAbs(p) {
+		directory, _ := os.Getwd()
+		p = path.Join(directory, p)
+	}
+
+	err := os.Chdir(p)
+
+	if err != nil {
+		fmt.Printf("cd: %s: No such file or directory\n", p)
 	}
 }
 
