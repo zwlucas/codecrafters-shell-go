@@ -30,6 +30,8 @@ func main() {
 			Echo(command[1:])
 		case "type":
 			Type(command[1])
+		case "pwd":
+			Pwd()
 		default:
 			executable := exec.Command(command[0], command[1:]...)
 			executable.Stderr = os.Stderr
@@ -41,6 +43,16 @@ func main() {
 			}
 		}
 	}
+}
+
+func Pwd() {
+	dir, err := os.Getwd()
+
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	fmt.Println(dir)
 }
 
 func Echo(message []string) {
