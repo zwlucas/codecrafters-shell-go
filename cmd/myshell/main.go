@@ -31,7 +31,7 @@ func main() {
 			os.Exit(code)
 			return
 		case "echo":
-			fmt.Printf("%s\n", strings.Join(commands[1:], " "))
+			fmt.Println(os.Stdout, "%s\n", strings.Join(commands[1:], " "))
 			return
 		default:
 			fmt.Printf("%s: command not found\n", commands[0])
