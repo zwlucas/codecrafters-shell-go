@@ -8,6 +8,8 @@ import (
 	"strings"
 )
 
+var KnowCommands = map[string]int{"exit": 0, "echo": 1, "type": 2}
+
 func main() {
 	stdin := bufio.NewReader(os.Stdin)
 	for {
@@ -36,6 +38,16 @@ func main() {
 			case "exit", "echo", "type":
 				fmt.Printf("%s is a shell builtin\n", command[1])
 			default:
+				env := os.Getenv("PATH")
+				paths := strings.Split(env, ":")
+
+				for _, path := range paths {
+					exec := path + "/" + command[1]
+
+					if _, err := os.Stat(exec); err == nil {
+						fmt.Printf("%s is %s\n", command[1], exec)
+					}
+				}
 				fmt.Printf("%s not found\n", command[1])
 			}
 		default:
