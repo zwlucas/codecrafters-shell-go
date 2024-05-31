@@ -64,7 +64,7 @@ func Cd(dir string) {
 
 	if dir == "~" {
 		home, _ := os.UserHomeDir()
-		p = home + dir
+		p = home + "/"
 	}
 
 	err := os.Chdir(p)
