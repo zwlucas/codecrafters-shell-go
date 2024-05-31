@@ -4,11 +4,10 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"os/exec"
 	"strconv"
 	"strings"
 )
-
-var KnowCommands = map[string]int{"exit": 0, "echo": 1, "type": 2}
 
 func main() {
 	stdin := bufio.NewReader(os.Stdin)
@@ -32,7 +31,14 @@ func main() {
 		case "type":
 			Type(command[1])
 		default:
-			fmt.Printf("%s: command not found\n", command[0])
+			executable := exec.Command(command[0], command[1:]...)
+			executable.Stderr = os.Stderr
+			executable.Stdout = os.Stdout
+
+			err := executable.Run()
+			if err != nil {
+				fmt.Printf("%s: command not found\n", command[0])
+			}
 		}
 	}
 }
@@ -67,6 +73,6 @@ func Type(command string) {
 				return
 			}
 		}
-		fmt.Printf("%s not found\n", command)
+		fmt.Printf("%s: command not found\n", command)
 	}
 }
