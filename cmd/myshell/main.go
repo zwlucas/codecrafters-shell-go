@@ -45,7 +45,7 @@ func main() {
 					exec := path + "/" + command[1]
 
 					if _, err := os.Stat(exec); err == nil {
-						fmt.Printf("%s is %s\n", command[1], exec)
+						fmt.Printf("%s is %s", command[1], exec)
 						return
 					}
 				}
