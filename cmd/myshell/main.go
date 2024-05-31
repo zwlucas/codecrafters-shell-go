@@ -53,8 +53,8 @@ func Cd(dir string) {
 	p := path.Clean(dir)
 
 	if !path.IsAbs(p) {
-		directory, _ := os.Getwd()
-		p = path.Join(directory, p)
+		dir, _ := os.Getwd()
+		p = path.Join(dir, p)
 	}
 
 	err := os.Chdir(p)
