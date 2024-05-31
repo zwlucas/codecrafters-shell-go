@@ -20,19 +20,26 @@ func main() {
 
 		trim := strings.TrimSpace(in)
 
-		commands := strings.Split(trim, " ")
+		command := strings.Split(trim, " ")
 
-		switch commands[0] {
+		switch command[0] {
 		case "exit":
-			code, err := strconv.Atoi(commands[1])
+			code, err := strconv.Atoi(command[1])
 			if err != nil {
 				fmt.Println(err.Error())
 			}
 			os.Exit(code)
 		case "echo":
-			fmt.Printf("%s\n", strings.Join(commands[1:], " "))
+			fmt.Println(strings.Join(command[1:], " "))
+		case "type":
+			switch command[1] {
+			case "exit", "echo", "type":
+				fmt.Printf("%s is a shell builtin\n", command[1])
+			default:
+				fmt.Printf("%s not found\n", command[1])
+			}
 		default:
-			fmt.Printf("%s: command not found\n", commands[0])
+			fmt.Printf("%s: command not found\n", command[0])
 		}
 	}
 }
