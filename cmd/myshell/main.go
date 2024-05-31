@@ -32,6 +32,8 @@ func main() {
 			Type(command[1])
 		case "pwd":
 			Pwd()
+		case "cd":
+			Cd(command[1])
 		default:
 			executable := exec.Command(command[0], command[1:]...)
 			executable.Stderr = os.Stderr
