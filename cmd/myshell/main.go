@@ -46,7 +46,7 @@ func main() {
 
 					if _, err := os.Stat(exec); err == nil {
 						fmt.Printf("%s is %s\n", command[1], exec)
-						break
+						return
 					}
 				}
 				fmt.Printf("%s not found\n", command[1])
